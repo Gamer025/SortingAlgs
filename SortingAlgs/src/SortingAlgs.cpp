@@ -6,18 +6,33 @@
 
 int main()
 {
+	ZoneScoped;
 	srand(time(NULL));
-	int_array ints = { (int*)malloc(sizeof(int) * 64), 64 };
-	for (size_t i = 0; i < ints.size; i++)
+
+	int asize;
+	int randmax;
+	int iter;
+	printf("Array size:");
+	scanf("%d", &asize);
+	printf("Max num:");
+	scanf("%d", &randmax);
+	printf("Iterations:");
+	scanf("%d", &iter);
+
+	for (int i = 0; i < iter; i++)
 	{
-		ints.integers[i] = 1 + rand() % 100;
+		int_array ints = { (int*)malloc(sizeof(int) * asize), asize };
+		for (size_t i = 0; i < ints.size; i++)
+		{
+			ints.integers[i] = 1 + rand() % randmax;
+		}
+
+		printf("Unsorted list:\n");
+		print_int_array(&ints);
+		MergeSort(&ints);
+		printf("Sorted list:\n");
+		print_int_array(&ints);
+		free(ints.integers);
 	}
-
-	printf("Unsorted list: ");
-	print_int_array(&ints);
-	MergeSort(&ints);
-	printf("Sorted list: ");
-	print_int_array(&ints);
-
 	return 0;
 }

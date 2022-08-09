@@ -1,6 +1,11 @@
 ﻿#pragma once
 
 #include <iostream>
+#include "Tracy.hpp"
+#include "xmalloc.h"
+
+#define malloc xmalloc
+#define free xfree
 
 typedef struct int_array {
 	int* integers;
